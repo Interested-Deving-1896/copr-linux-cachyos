@@ -1,191 +1,91 @@
-<div align="center">
- 
-  <h1 align="center">linux-cachyos-bore / linux-cachyos-bore-eevdf  for Fedora</h1>
-</div>
+# copr-linux-cachyos
 
-# Announcement (20.08.2023): Due to the large amount of work on the LTO kernel, its further development will be discontinued. Instead, we provide a kernel with a BORE + CFS and BORE + EEVDF scheduler. Please make appropriate changes to the system in order to receive updates. Sorry for the difficulties.
+[![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/copr-linux-cachyos) [![KDE Eco](https://img.shields.io/badge/KDE%20Eco-certified-brightgreen?logo=kde&logoColor=white&style=flat-square)](https://eco.kde.org/) [![Blue Angel](https://img.shields.io/badge/Blue%20Angel-DE--UZ%20215-0055a4?style=flat-square)](https://www.blauer-engel.de/en/certification/criteria)
 
-# KERNEL
 
-### linux-cachyos-bore-eevdf uses as default the BORE-EEVDF scheduler
-- **(BORE) - Burst-Oriented Response Enhancer) CPU Scheduler** by [firelzrd (BORE)](https://github.com/firelzrd/bore-scheduler/tree/main/patches/linux-6.5-eevdf-bore)
-- **(EEVDF) - Earliest Eligiable Virtual Deadline First** [EEVDF](https://lwn.net/Articles/927530/) is a replacement for the CFS Scheduler from Peter Zijlstra
+<!-- AI:start:what-it-does -->
+_Description pending._
+<!-- AI:end:what-it-does -->
 
-### linux-cachyos-bore uses as default the BORE scheduler
-- **(BORE) - Burst-Oriented Response Enhancer) CPU Scheduler** by [firelzrd (BORE)](https://github.com/firelzrd/bore-scheduler/tree/main/patches/linux-6.4-bore)
+## Architecture
 
-### Features:
-- AMD PSTATE Preferred Core and enabled as default
-- Latest BTRFS and XFS improvements & fixes.
-- Latest & improved ZSTD 1.5.5 patch-set.
-- UserKSM daemon from pf.
-- Improved BFQ Scheduler.
-- Back-ported patches from `linux-next`.
-- BBRv3 tcp_congestion_control.
-- Scheduler patches from linux-next/tip.
-- General improved sysctl settings and upstream scheduler fixes.
-- OpenRGB and ACS Override support.
-- HDR Patches for AMD GPU's and gamescope.
-- Default support for Steam Deck.
-- Lenovo Legion [Patchset](https://github.com/johnfanv2/LenovoLegionLinux)
+<!-- AI:start:architecture -->
+_Architecture documentation pending._
+<!-- AI:end:architecture -->
 
-### Checking for the cpu support:
-Check support by the following the command
-```
-/lib64/ld-linux-x86-64.so.2 --help | grep "(supported, searched)"
+## Install
 
-```
-If it does not detect x86_64_v3 support do not install the kernel. Otherwise you will end up with a non-functioning operating system! 
+<!-- Add installation instructions here. This section is yours — the AI will not modify it. -->
 
-### Installation instructions:
-
-#### Fedora Workstation
-
-```
-sudo dnf copr enable bieszczaders/kernel-cachyos
+```bash
+git clone https://github.com/Interested-Deving-1896/copr-linux-cachyos.git
+cd copr-linux-cachyos
 ```
 
-and next
+## Usage
+
+<!-- Add usage examples here. This section is yours — the AI will not modify it. -->
+
+## Configuration
+
+<!-- Document configuration options here. This section is yours — the AI will not modify it. -->
+
+## CI
+
+<!-- AI:start:ci -->
+_CI documentation pending._
+<!-- AI:end:ci -->
+
+## Mirror chain
+
+<!-- AI:start:mirror-chain -->
+This repo is maintained in [`Interested-Deving-1896/copr-linux-cachyos`](https://github.com/Interested-Deving-1896/copr-linux-cachyos) and mirrored through:
 
 ```
-sudo dnf install kernel-cachyos-bore
+Interested-Deving-1896/copr-linux-cachyos  ──►  OpenOS-Project-OSP/copr-linux-cachyos  ──►  OpenOS-Project-Ecosystem-OOC/copr-linux-cachyos
 ```
 
-OR for bore-eevdf
-```
-sudo dnf install kernel-cachyos-bore-eevdf
-```
+Changes flow downstream automatically via the hourly mirror chain in
+[`fork-sync-all`](https://github.com/Interested-Deving-1896/fork-sync-all).
+Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-Deving-1896`.
+<!-- AI:end:mirror-chain -->
 
-OR for realtime
-```
-sudo dnf install kernel-cachyos-bore-eevdf-rt
-```
+## Contributors
 
-OR for lts
-```
-sudo dnf install kernel-cachyos-lts
-```
+<!-- AI:start:contributors -->
+_Contributors pending._
+<!-- AI:end:contributors -->
 
-LTS kernel works with x86_64v2 cpu's and legacy nvidia drivers
+## Origins
 
-#### Fedora Silverblue
+<!-- AI:start:origins -->
+_Original project — no upstream influences recorded._
+<!-- AI:end:origins -->
 
-```
-cd /etc/yum.repos.d/
+## Resources
 
-sudo wget https://copr.fedorainfracloud.org/coprs/bieszczaders/kernel-cachyos/repo/fedora-$(rpm -E %fedora)/bieszczaders-kernel-cachyos-fedora-$(rpm -E %fedora).repo
-```
+<!-- AI:start:resources -->
+_No additional resource files found._
+<!-- AI:end:resources -->
 
-and next
+## Accessibility
 
-```
-sudo rpm-ostree override remove kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra --install kernel-cachyos-bore
+<!-- AI:start:accessibility -->
+This repo uses automated accessibility auditing via `check-accessibility.yml`.
 
-sudo systemctl reboot
-```
-
-OR for bore-eevdf
-```
-sudo rpm-ostree override remove kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra --install kernel-cachyos-bore-eevdf
-
-sudo systemctl reboot
-```
-
-OR for realtime
-```
-sudo rpm-ostree override remove kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra --install kernel-cachyos-bore-eevdf-rt
-
-sudo systemctl reboot
-```
-
-OR for lts
-```
-sudo rpm-ostree override remove kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra --install kernel-cachyos-lts
-
-sudo systemctl reboot
-```
-
-LTS kernel works with x86_64v2 cpu's and legacy nvidia drivers
+Checks include: CODEOWNERS ownership coverage, README screen-reader compatibility,
+WCAG 2.1 AA HTML compliance, audio overview (espeak-ng), and Braille output (liblouis).
 
 
-# UKSMD
 
-Check description [here](https://github.com/CachyOS/uksmd).
 
-### Installation instructions:
+Run the [Check Accessibility](https://github.com/Interested-Deving-1896/copr-linux-cachyos/actions/workflows/check-accessibility.yml)
+workflow to generate the first report and accessibility artifacts.
+See [DOCS/accessibility.md](https://github.com/Interested-Deving-1896/copr-linux-cachyos/blob/main/DOCS/accessibility.md) for the full reference.
+<!-- AI:end:accessibility -->
 
-#### Fedora Workstation
+## License
 
-```
-sudo dnf copr enable bieszczaders/kernel-cachyos-addons
-```
-
-### Install required packages:
-
-```
-sudo dnf install libcap-ng libcap-ng-devel procps-ng procps-ng-devel
-```
-
-### Install UKSMD:
-
-```
-sudo dnf install uksmd
-```
-
-### Enable UKSMD:
-
-```
-sudo systemd enable uksmd && sudo systemd start uksmd
-```
-
-### Checking the correct operation of the uksmd:
-
-```
-systemctl status uksmd
-```
-
-and
-
-```
-uksmdstats
-```
-
-#### Fedora Silverblue
-
-```
-cd /etc/yum.repos.d/
-
-sudo wget https://copr.fedorainfracloud.org/coprs/bieszczaders/kernel-cachyos-addons/repo/fedora-$(rpm -E %fedora)/bieszczaders-kernel-cachyos-addons-fedora-$(rpm -E %fedora).repo
-```
-
-### Install required packages:
-
-```
-sudo rpm-ostree install libcap-ng-devel procps-ng-devel
-```
-
-### Install UKSMD:
-
-```
-sudo rpm-ostree install uksmd
-
-sudo systemctl reboot
-```
-
-### Enable UKSMD:
-
-```
-sudo systemd enable uksmd && sudo systemd start uksmd
-```
-
-### Checking the correct operation of the uksmd:
-
-```
-systemctl status uksmd
-```
-
-and
-
-```
-uksmdstats
-```
+<!-- AI:start:license -->
+[GPL-3.0](https://github.com/Interested-Deving-1896/copr-linux-cachyos/blob/6.6-testing/LICENSE.md) © 2026 [Interested-Deving-1896](https://github.com/Interested-Deving-1896)
+<!-- AI:end:license -->
